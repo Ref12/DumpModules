@@ -70,7 +70,8 @@ namespace Ref12.Diagnostics.Extraction
                                 int.MaxValue),
                             new ReaderParameters(ReadingMode.Deferred)
                             {
-                                AssemblyResolver = this
+                                AssemblyResolver = this,
+                                FromDump = true
                             });
 
                         AssemblyMap[name] = definition;

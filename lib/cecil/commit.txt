@@ -1,3 +1,3 @@
 https://github.com/Ref12/cecil (feature/dumpModules)
 
-00380910665f2ecb26c48b9fffaeba86ffea4cb4
+a30037b6b074d14ac7c7c1a15ff49439bdd948c3
