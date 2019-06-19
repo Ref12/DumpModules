@@ -8,10 +8,14 @@ namespace DumpModules
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            string dumpPath = @"D:\temp\UnhandledFailure.dmp";
-            ModuleDumper.Run(dumpPath, Path.ChangeExtension(dumpPath, "modules"));
+            if (args.Length < 2)
+            {
+                Console.WriteLine("Usage: DumpModules.exe dumpPath outputDirectory");
+            }
 
+            string dumpPath = args[0];
+            string outputDirectory = args[1];
+            ModuleDumper.Run(dumpPath, outputDirectory);
         }
     }
 }

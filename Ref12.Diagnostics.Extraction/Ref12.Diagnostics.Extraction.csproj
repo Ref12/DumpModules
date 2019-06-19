@@ -6,7 +6,19 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="1.0.5" />
-    <PackageReference Include="Mono.Cecil" Version="0.10.4" />
+    <!--<PackageReference Include="Mono.Cecil" Version="0.10.4" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CorApi">
+      <HintPath>..\..\DotNet-DiagnosticTests.kirillo\bin\Windows.AnyCPU.Debug\mdbg_desktop\CorApi.dll</HintPath>
+    </Reference>
+    <Reference Include="MDbgEng">
+      <HintPath>..\..\DotNet-DiagnosticTests.kirillo\bin\Windows.AnyCPU.Debug\mdbg_desktop\MDbgEng.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\cecil\bin\Debug\netstandard2.0\Mono.Cecil.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

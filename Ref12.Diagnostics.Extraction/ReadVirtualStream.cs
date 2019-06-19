@@ -65,7 +65,7 @@ namespace Ref12.Diagnostics.Extraction
         {
             if (offset == 0)
             {
-                if (_dataReader.ReadMemory((ulong)(_pos + _disp), buffer, count, out int read))
+                if (Read(buffer, count, out int read))
                     return read;
 
                 return 0;
@@ -75,12 +75,23 @@ namespace Ref12.Diagnostics.Extraction
                 if (_tmp == null || _tmp.Length < count)
                     _tmp = new byte[count];
 
-                if (!_dataReader.ReadMemory((ulong)(_pos + _disp), _tmp, count, out int read))
+                if (!Read(_tmp, count, out int read))
                     return 0;
 
                 Buffer.BlockCopy(_tmp, 0, buffer, offset, read);
                 return read;
             }
+        }
+
+        private bool Read(byte[] buffer, int count, out int read)
+        {
+            if (_dataReader.ReadMemory((ulong)(_pos + _disp), buffer, count, out read))
+            {
+                _pos += read;
+                return true;
+            }
+
+            return false;
         }
 
         public override long Seek(long offset, SeekOrigin origin)
