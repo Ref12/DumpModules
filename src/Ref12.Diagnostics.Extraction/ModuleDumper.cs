@@ -1,6 +1,4 @@
 ﻿using Microsoft.Diagnostics.Runtime;
-using Microsoft.Samples.Debugging.MdbgEngine;
-using Microsoft.Samples.Debugging.SymbolStore;
 using Mono.Cecil;
 using System;
 using System.Collections.Generic;
@@ -91,15 +89,6 @@ namespace Ref12.Diagnostics.Extraction
             {
                 return Resolve(name.Name);
             }
-        }
-
-        public class VirtualStreamModuleReader : StreamModuleReader, IModuleReader
-        {
-            public VirtualStreamModuleReader(Stream peStream) : base(peStream)
-            {
-            }
-
-            PEStreamFormat IModuleReader.Format => PEStreamFormat.MemoryLayoutFormat;
         }
     }
 }

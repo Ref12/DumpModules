@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <LibRoot>$(MSBuildThisFileDirectory)\lib</LibRoot>
+  </PropertyGroup>
+</Project>
