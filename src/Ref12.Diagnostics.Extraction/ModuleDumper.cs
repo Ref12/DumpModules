@@ -20,16 +20,22 @@ namespace Ref12.Diagnostics.Extraction
 
             foreach (var module in runtime.AppDomains[0].Modules)
             {
-                if (string.IsNullOrEmpty(module.FileName) || module.MetadataAddress == 0)
+                try
                 {
-                    continue;
+                    if (string.IsNullOrEmpty(module.FileName) || module.MetadataAddress == 0)
+                    {
+                        continue;
+                    }
+                    AssemblyDefinition assembly = resolver.Resolve(Path.GetFileNameWithoutExtension(module.Name));
+
+                    assembly.MainModule.Attributes |= ModuleAttributes.ILOnly;
+
+                    assembly.Write(Path.Combine(modulesDirectory, Path.GetFileName(module.FileName)));
                 }
-
-                AssemblyDefinition assembly = resolver.Resolve(Path.GetFileNameWithoutExtension(module.Name));
-
-                assembly.MainModule.Attributes |= ModuleAttributes.ILOnly;
-
-                assembly.Write(Path.Combine(modulesDirectory, Path.GetFileName(module.FileName)));
+                catch
+                {
+                    Console.Error.WriteLine($"Error writing: {module.FileName}");
+                }
             }
         }
 
